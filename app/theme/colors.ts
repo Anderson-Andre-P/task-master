@@ -63,6 +63,8 @@ export const colors = {
   lightBorder: palette.neutral300,
   darkBorder: palette.darkBorder,
 
+  separator: palette.neutral300,
+
   primary: palette.primary600,
   secondary: palette.primary200,
 
