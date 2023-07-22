@@ -40,7 +40,6 @@ export interface ButtonProps extends PressableProps {
 export function Button(props: ButtonProps) {
   const {
     text,
-
     style: $viewStyleOverride,
     pressedStyle: $pressedViewStyleOverride,
     textStyle: $textStyleOverride,
@@ -110,6 +109,7 @@ const $baseTextStyle: TextStyle = {
   flexShrink: 1,
   flexGrow: 0,
   zIndex: 2,
+  color: colors.darkTitle,
 };
 
 const $rightAccessoryStyle: ViewStyle = { marginStart: spacing.xs, zIndex: 1 };
@@ -119,9 +119,9 @@ const $viewPresets = {
   default: [
     $baseViewStyle,
     {
-      borderWidth: 1,
-      borderColor: colors.palette.neutral400,
-      backgroundColor: colors.palette.neutral100,
+      borderWidth: 0,
+      borderColor: colors.lightBorder,
+      backgroundColor: colors.primary,
     },
   ] as StyleProp<ViewStyle>,
 
@@ -143,7 +143,7 @@ const $textPresets: Record<Presets, StyleProp<TextStyle>> = {
 };
 
 const $pressedViewPresets: Record<Presets, StyleProp<ViewStyle>> = {
-  default: { backgroundColor: colors.palette.neutral200 },
+  default: { backgroundColor: colors.palette.primary800 },
   filled: { backgroundColor: colors.palette.neutral400 },
   reversed: { backgroundColor: colors.palette.neutral700 },
 };
