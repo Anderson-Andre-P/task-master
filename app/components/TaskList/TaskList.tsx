@@ -66,6 +66,7 @@ export function TasksList({
               onPress={() => removeTask(item.id)}
             >
               {/* <Image source={trashIcon} /> */}
+              <Icon name="trash" size={24} color="#ff0000" />
             </TouchableOpacity>
           </ItemWrapper>
         );
