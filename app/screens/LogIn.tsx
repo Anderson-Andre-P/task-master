@@ -59,7 +59,7 @@ const LoginScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
           <PrimaryButton text={'Entrar'} onPress={() => navigate('Home')} />
           <SeccondaryButton
             text={'Criar uma nova conta'}
-            onPress={() => navigate('Home')}
+            onPress={() => navigate('Register')}
           />
         </View>
 
