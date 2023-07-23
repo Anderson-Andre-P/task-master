@@ -1,24 +1,34 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Header } from '../components/Header/Header';
-import { Task, TasksList } from '../components/TaskList/TaskList';
+import { TasksList } from '../components/TaskList/TaskList';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
 import AddTaskModal from '../components/addTaskModal/AddTaskModal';
-import AppCustomModal from '../components/CustomModal/AppCustomModal';
-import { Button } from 'react-native';
+import { colors } from '../theme';
+import { FabButton } from '../components/Buttons/FabButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+export interface Task {
+  id: number;
+  title: string;
+  done: boolean;
+  date: Date; // Adicione este campo para representar a data da tarefa
+}
 
 function Home({ navigation: { navigate } }) {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  function handleAddTask(newTaskTitle: string) {
+  const [dates, setDates] = useState<Date[]>([]);
+
+  function handleAddTask(newTaskTitle: string, newTaskDate: Date) {
     const newTask = {
       id: new Date().getTime(),
       title: newTaskTitle,
       done: false,
+      date: newTaskDate, // Adicione a data à estrutura da tarefa
     };
 
     setTasks((oldTasks) => [...oldTasks, newTask]);
@@ -54,21 +64,26 @@ function Home({ navigation: { navigate } }) {
     <View style={styles.container}>
       <Header tasksCounter={tasks.length} />
 
-      <TouchableOpacity
+      {/* <PrimaryButton
         onPress={() => {
           setAddModalVisible(true);
         }}
-      >
-        <Text>
-          Adicionar nova tarefa
-          <AddTaskModal
-            open={addModalVisible}
-            handleCancel={handleCancelAdd}
-            handleAddTask={handleAddTask}
-            addTask={handleAddTask}
-          />
-        </Text>
-      </TouchableOpacity>
+        text={'Adicionar nova tarefa'}
+      /> */}
+
+      <FabButton
+        onPress={() => {
+          setAddModalVisible(true);
+        }}
+        text={'+'}
+      />
+
+      <AddTaskModal
+        open={addModalVisible}
+        handleCancel={handleCancelAdd}
+        handleAddTask={(task, date) => handleAddTask(task, date)}
+        addTask={(task, date) => handleAddTask(task, date)}
+      />
 
       <TasksList
         tasks={tasks}
@@ -82,7 +97,7 @@ function Home({ navigation: { navigate } }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EBEBEB',
+    backgroundColor: colors.lightBackground,
   },
 });
 

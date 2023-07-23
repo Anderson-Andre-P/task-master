@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { colors } from '../../theme';
+import { TextBody } from '../Texts/TextBody';
 
 interface HeaderProps {
   tasksCounter: number;
@@ -11,10 +13,10 @@ export function Header({ tasksCounter }: HeaderProps) {
   return (
     <View style={styles.container}>
       <View style={styles.tasks}>
-        <Text style={styles.tasksCounter}>Você tem </Text>
-        <Text style={styles.tasksCounterBold}>
-          {tasksCounter} {tasksCounterText}
-        </Text>
+        <TextBody
+          text={`Você tem ${tasksCounter} ${tasksCounterText} para fazer... `}
+          isDark={true}
+        />
       </View>
     </View>
   );
@@ -22,10 +24,10 @@ export function Header({ tasksCounter }: HeaderProps) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 16,
+    paddingTop: 40,
     paddingHorizontal: 24,
     paddingBottom: 60,
-    backgroundColor: '#8257E5',
+    backgroundColor: colors.primary,
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection: 'row',
@@ -33,15 +35,5 @@ const styles = StyleSheet.create({
   tasks: {
     alignItems: 'center',
     flexDirection: 'row',
-  },
-  tasksCounter: {
-    fontSize: 15,
-    color: '#FFF',
-    fontFamily: 'Inter-Regular',
-  },
-  tasksCounterBold: {
-    fontSize: 15,
-    color: '#FFF',
-    fontFamily: 'Inter-Bold',
   },
 });

@@ -45,6 +45,8 @@ export const colors = {
   palette,
   transparent: 'rgba(0, 0, 0, 0)',
 
+  overlay50: palette.overlay50,
+
   lightBackground: palette.neutral50,
   darkBackground: palette.neutral900,
 

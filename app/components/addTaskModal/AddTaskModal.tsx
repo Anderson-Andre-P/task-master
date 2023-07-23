@@ -1,24 +1,23 @@
-import {
-  TouchableWithoutFeedback,
-  TextInput,
-  Text,
-  View,
-  TouchableOpacity,
-} from 'react-native';
+import { TextInput, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
 import { colors, fontSizes, typography } from '../../theme';
 import AppCustomModal from '../CustomModal/AppCustomModal';
-import { useState } from 'react';
-import Icon from 'react-native-vector-icons/Feather';
+import React, { useState } from 'react';
 
-import DropDownPicker from 'react-native-dropdown-picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { PrimaryButton } from '../Buttons/FullButtons/PrimaryButton';
+import { PrimaryMiddleButton } from '../Buttons/MiddleButtons/PrimaryMiddleButton';
+import { SeccondaryMiddleButton } from '../Buttons/MiddleButtons/SecondaryMiddleButton';
+import { TextTitle } from '../Texts/TextTitle';
+import { TextBody } from '../Texts/TextBody';
 
 interface TodoInputProps {
-  addTask: (task: string) => void;
+  addTask: (task: []) => void;
 }
 
 const AddTaskModal = ({ open, handleCancel, handleAddTask, addTask }) => {
   const [task, setTask] = useState('');
+  const [date, setDate] = useState(new Date());
 
   function handleAddNewTask() {
     if (!task) return;
@@ -30,153 +29,85 @@ const AddTaskModal = ({ open, handleCancel, handleAddTask, addTask }) => {
     return;
   }
 
+  const [mode, setMode] = useState('date');
+  const [show, setShow] = useState(false);
+
+  const onChange = (event, selectedDate) => {
+    const currentDate = selectedDate;
+    setShow(false);
+    setDate(currentDate);
+  };
+
+  const showMode = (currentMode) => {
+    setShow(true);
+    setMode(currentMode);
+  };
+
+  const showDatepicker = () => {
+    showMode('date');
+  };
+
   return (
     <AppCustomModal open={open}>
-      <Text style={styles.modalHeading}>Adicionar tarefa</Text>
-
-      {/* <TodoInput addTask={handleAddTask} /> */}
+      <TextTitle text={'Adicionar tarefa'} />
 
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Adicionar novo todo..."
+          placeholder="Adicionar nova tarefa"
           placeholderTextColor="#B2B2B2"
           returnKeyType="send"
           selectionColor="#666666"
           value={task}
           onChangeText={setTask}
-          onSubmitEditing={handleAddNewTask}
         />
-        {/* <TouchableOpacity
-          testID="add-new-task-button"
-          activeOpacity={0.7}
-          style={styles.addButton}
-          onPress={handleAddNewTask}
-        >
-          <Icon name="chevron-right" size={24} color="#B2B2B2" />
-        </TouchableOpacity> */}
+      </View>
+
+      <View style={styles.modalDateGroup}>
+        <PrimaryButton
+          onPress={showDatepicker}
+          text={'Escolher a data da tarefa'}
+        />
+        <TextBody
+          text={
+            'Data selecionada: ' + new Intl.DateTimeFormat('pt-BR').format(date)
+          }
+          isDark={false}
+        />
+
+        {show && (
+          <DateTimePicker
+            minimumDate={new Date()}
+            testID="dateTimePicker"
+            mode="date"
+            is24Hour={true}
+            value={date}
+            onChange={onChange}
+          />
+        )}
       </View>
 
       <View style={styles.modalFormActions}>
-        <TouchableWithoutFeedback onPress={handleAddNewTask}>
-          <View
-            style={[
-              styles.modalFormAction,
-              styles.primaryButton,
-              { marginRight: 6 },
-            ]}
-          >
-            <Text style={styles.modalFormActionText}>Adicionar</Text>
-          </View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={handleCancel}>
-          <View
-            style={[
-              styles.modalFormAction,
-              styles.secondaryButton,
-              { marginLeft: 6 },
-            ]}
-          >
-            <Text
-              style={[
-                styles.modalFormActionText,
-                styles.modalFormActionTextSecondary,
-              ]}
-            >
-              Cancelar
-            </Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <PrimaryMiddleButton onPress={handleAddNewTask} text={'Adicionar'} />
+        <SeccondaryMiddleButton onPress={handleCancel} text={'Cancelar'} />
       </View>
     </AppCustomModal>
   );
 };
 
 export const styles = StyleSheet.create({
-  modalHeading: {
-    color: colors.primary,
-    fontFamily: typography.primaryText.normal,
-    fontSize: fontSizes.medium,
-    marginBottom: 42,
-  },
-  modalForm: {},
-  modalFormGroup: {
-    marginBottom: 24,
-  },
-  modalFormLabel: {
-    color: colors.primary,
-    fontFamily: typography.primaryText.normal,
-    fontSize: fontSizes.medium,
-    marginBottom: 12,
-  },
-  modalFormInput: {
-    backgroundColor: colors.darkBackground,
-    color: colors.primary,
-    fontFamily: typography.primaryText.normal,
-    fontSize: fontSizes.medium,
-    padding: 12,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: colors.primary,
-  },
-  dropdownText: {
-    color: colors.primary,
-    fontFamily: typography.primaryText.normal,
-    fontSize: fontSizes.medium,
-  },
-  dropdownLabel: {
-    color: colors.primary,
-    fontFamily: typography.primaryText.normal,
-    fontSize: fontSizes.medium,
-  },
-  dropdownContainer: {
-    backgroundColor: colors.darkBackground,
-    borderColor: colors.primary,
-  },
-  dropdownPlaceholder: {
-    color: colors.primary,
-    fontFamily: typography.primaryText.normal,
-    fontSize: fontSizes.medium,
-  },
   modalFormActions: {
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 12,
     zIndex: -1,
   },
-  modalFormAction: {
-    width: 120,
-    borderRadius: 12,
-    padding: 12,
-    marginLeft: 0,
-  },
-  primaryButton: {
-    backgroundColor: colors.primary,
-  },
-  secondaryButton: {
-    backgroundColor: 'transparent',
-    borderWidth: 1,
-    borderColor: colors.error,
-  },
-  modalFormActionText: {
-    color: colors.darkTitle,
-    fontFamily: typography.primaryTitle.bold,
-    fontSize: fontSizes.small,
-    textTransform: 'uppercase',
-    textAlign: 'center',
-  },
-  modalFormActionTextSecondary: {
-    color: colors.error,
-  },
-
   inputContainer: {
     backgroundColor: '#FFF',
-    borderRadius: 5,
-    marginTop: -28,
-    marginHorizontal: 24,
+    borderRadius: 4,
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 12,
   },
   input: {
     flex: 1,
@@ -189,14 +120,8 @@ export const styles = StyleSheet.create({
     borderRightColor: '#EBEBEB',
     color: '#666666',
   },
-  addButton: {
-    backgroundColor: '#FFF',
-    height: 56,
-    paddingHorizontal: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
+  modalDateGroup: {
+    marginBottom: 12,
   },
 });
 

@@ -19,7 +19,7 @@ import { colors } from '../../theme';
 export const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
-    backgroundColor: colors.lightBackground,
+    backgroundColor: colors.overlay50,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -27,8 +27,8 @@ export const styles = StyleSheet.create({
     backgroundColor: colors.lightCardBackground,
     width: '90%',
     padding: 24,
-    borderRadius: 16,
-    elevation: 5,
+    borderRadius: 4,
+    elevation: 3,
   },
 });
 

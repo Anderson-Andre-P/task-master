@@ -1,18 +1,14 @@
 import React from 'react';
 import {
   FlatList,
-  Image,
   TouchableOpacity,
   View,
   Text,
   StyleSheet,
-  FlatListProps,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 
 import { ItemWrapper } from '../ItemWrapper/ItemWrapper';
-
-// import trashIcon from '../assets/icons/trash/trash.png';
 
 export interface Task {
   id: number;
@@ -57,6 +53,10 @@ export function TasksList({
                 <Text style={item.done ? styles.taskTextDone : styles.taskText}>
                   {item.title}
                 </Text>
+
+                <Text style={styles.taskText}>
+                  {item.done ? 'Concluída' : 'Não Concluída'}
+                </Text>
               </TouchableOpacity>
             </View>
 
@@ -65,7 +65,6 @@ export function TasksList({
               style={{ paddingHorizontal: 24 }}
               onPress={() => removeTask(item.id)}
             >
-              {/* <Image source={trashIcon} /> */}
               <Icon name="trash" size={24} color="#ff0000" />
             </TouchableOpacity>
           </ItemWrapper>
