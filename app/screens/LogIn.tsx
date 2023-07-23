@@ -13,6 +13,12 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
 import { colors, fontSizes, spacing, typography } from '../theme';
 import AppTextInput from '../components/AppTextInput';
+import { TextTitle } from '../components/Texts/TextTitle';
+import { TextBody } from '../components/Texts/TextBody';
+import { StyleGuide } from '../theme/StyleGuide';
+import { PrimaryButton } from '../components/Buttons/FullButtons/PrimaryButton';
+import { SeccondaryButton } from '../components/Buttons/FullButtons/SeccondaryButton';
+import { CalloutButton } from '../components/Texts/CalloutButton';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -21,121 +27,48 @@ const LoginScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
     <SafeAreaView>
       <View
         style={{
-          paddingTop: 20,
-          paddingBottom: 20,
-          paddingHorizontal: 20,
+          paddingTop: StyleGuide.spacing * 2,
+          paddingBottom: StyleGuide.spacing * 2,
+          paddingHorizontal: StyleGuide.spacing * 2,
         }}
       >
         <View
           style={{
             alignItems: 'center',
+            marginTop: 60,
           }}
         >
-          <Text
-            style={{
-              color: colors.primary,
-              fontFamily: typography.primaryText.bold,
-              fontSize: fontSizes.large,
-              marginVertical: 10 * 3,
-            }}
-          >
-            Faça o login por aqui
-          </Text>
-          <Text
-            style={{
-              fontFamily: typography.primaryText.bold,
-              fontSize: fontSizes.medium,
-              maxWidth: '60%',
-              textAlign: 'center',
-            }}
-          >
-            Bem-vindo de volta, sentimos sua falta!
-          </Text>
-        </View>
-        <View
-          style={{
-            marginVertical: 10 * 3,
-          }}
-        >
-          <AppTextInput placeholder="E-mail" />
-          <AppTextInput placeholder="Senha" />
+          <TextTitle text={'Faça o login!!!'} />
+
+          <TextBody
+            text={'Bem-vindo de volta, sentimos sua falta!'}
+            isDark={false}
+          />
         </View>
 
-        <View>
-          <Text
-            style={{
-              fontFamily: typography.primaryText.bold,
-              fontSize: fontSizes.medium,
-              color: colors.primary,
-              alignSelf: 'flex-end',
-            }}
-          >
-            Esqueceu a sua senha?
-          </Text>
-        </View>
+        <AppTextInput placeholder="E-mail" />
+        <AppTextInput placeholder="Senha" />
 
-        <TouchableOpacity
-          onPress={() => navigate('Home')}
-          style={{
-            padding: 20,
-            backgroundColor: colors.primary,
-            marginVertical: 30,
-            borderRadius: 4,
-            shadowColor: colors.primary,
-            shadowOffset: {
-              width: 0,
-              height: 10,
-            },
-            shadowOpacity: 0.3,
-            shadowRadius: 10,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: typography.primaryText.bold,
-              color: colors.darkTitle,
-              fontSize: fontSizes.medium,
-              textAlign: 'center',
-            }}
-          >
-            Entrar
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigate('Register')}
-          style={{
-            padding: 20,
-            backgroundColor: colors.secondary,
-            borderRadius: 4,
-          }}
-        >
-          <Text
-            style={{
-              fontFamily: typography.primaryText.bold,
-              color: colors.lightTitle,
-              fontSize: fontSizes.medium,
-              textAlign: 'center',
-            }}
-          >
-            Criar uma nova conta
-          </Text>
-        </TouchableOpacity>
+        <CalloutButton text={'Esqueceu a sua senha?'} />
 
         <View
           style={{
-            marginVertical: 10 * 3,
+            marginTop: StyleGuide.spacing * 3,
           }}
         >
-          <Text
-            style={{
-              fontFamily: typography.primaryText.bold,
-              color: colors.primary,
-              textAlign: 'center',
-              fontSize: fontSizes.medium,
-            }}
-          >
-            Or continue with
-          </Text>
+          <PrimaryButton text={'Entrar'} onPress={() => navigate('Home')} />
+          <SeccondaryButton
+            text={'Criar uma nova conta'}
+            onPress={() => navigate('Home')}
+          />
+        </View>
+
+        <View
+          style={{
+            marginVertical: StyleGuide.spacing * 3,
+          }}
+        >
+          <CalloutButton text={'Ou continue com'} />
 
           <View
             style={{
@@ -147,42 +80,42 @@ const LoginScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
             <TouchableOpacity
               style={{
                 padding: 10,
-                backgroundColor: colors.lightBackground,
+                backgroundColor: colors.lightCardBackground,
                 borderRadius: 10 / 2,
                 marginHorizontal: 10,
               }}
             >
               <Ionicons
                 name="logo-google"
-                color={colors.lightText}
+                color={colors.lightIcons}
                 size={10 * 2}
               />
             </TouchableOpacity>
             <TouchableOpacity
               style={{
                 padding: 10,
-                backgroundColor: colors.lightBackground,
+                backgroundColor: colors.lightCardBackground,
                 borderRadius: 10 / 2,
                 marginHorizontal: 10,
               }}
             >
               <Ionicons
                 name="logo-apple"
-                color={colors.lightText}
+                color={colors.lightIcons}
                 size={10 * 2}
               />
             </TouchableOpacity>
             <TouchableOpacity
               style={{
                 padding: 10,
-                backgroundColor: colors.lightText,
+                backgroundColor: colors.lightCardBackground,
                 borderRadius: 10 / 2,
                 marginHorizontal: 10,
               }}
             >
               <Ionicons
                 name="logo-facebook"
-                color={colors.lightText}
+                color={colors.lightIcons}
                 size={10 * 2}
               />
             </TouchableOpacity>
@@ -194,5 +127,3 @@ const LoginScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
 };
 
 export default LoginScreen;
-
-const styles = StyleSheet.create({});
