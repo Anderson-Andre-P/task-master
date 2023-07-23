@@ -12,6 +12,10 @@ import React from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
 import { colors, fontSizes, typography } from '../theme';
+import { TextTitle } from '../components/Texts/TextTitle';
+import { TextBody } from '../components/Texts/TextBody';
+import { PrimaryMiddleButton } from '../components/Buttons/MiddleButtons/PrimaryMiddleButton';
+import { SeccondaryMiddleButton } from '../components/Buttons/MiddleButtons/SecondaryMiddleButton';
 const { height } = Dimensions.get('window');
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Welcome'>;
@@ -34,88 +38,31 @@ const OnboardingScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
             paddingTop: 40,
           }}
         >
-          <Text
-            style={{
-              fontSize: fontSizes.xxLarge,
-              color: colors.primary,
-              fontFamily: typography.primaryText.bold,
-              textAlign: 'center',
-            }}
-          >
-            Gerencie suas tarefas aqui
-          </Text>
-
-          <Text
-            style={{
-              fontSize: fontSizes.small,
-              color: colors.lightText,
-              fontFamily: typography.primaryText.normal,
-              textAlign: 'center',
-              marginTop: 20,
-            }}
-          >
-            O melhor aplicativo de gerenciamento de tarefas que você vai
-            encontrar
-          </Text>
+          <TextTitle text={'Gerencie suas tarefas aqui'} />
+          <TextBody
+            text={
+              'O melhor aplicativo para o gerenciamento de tarefas que você vai encontrar!'
+            }
+            isDark={false}
+          />
         </View>
         <View
           style={{
             paddingHorizontal: 20,
             paddingTop: 60,
             flexDirection: 'row',
+            justifyContent: 'space-between',
           }}
         >
-          <TouchableOpacity
+          <PrimaryMiddleButton
+            text={'Entrar'}
             onPress={() => navigate('Login')}
-            style={{
-              backgroundColor: colors.primary,
-              paddingVertical: 15,
-              paddingHorizontal: 12,
-              marginRight: 2,
-              width: '48%',
-              borderRadius: 4,
-              shadowColor: colors.primary,
-              shadowOffset: {
-                width: 0,
-                height: 10,
-              },
-              shadowOpacity: 0.3,
-              shadowRadius: 10,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: typography.primaryText.bold,
-                color: colors.darkTitle,
-                fontSize: fontSizes.medium,
-                textAlign: 'center',
-              }}
-            >
-              Entrar
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity
+          />
+
+          <SeccondaryMiddleButton
+            text={'Cadastrar'}
             onPress={() => navigate('Login')}
-            style={{
-              backgroundColor: colors.secondary,
-              paddingVertical: 15,
-              paddingHorizontal: 12,
-              marginLeft: 2,
-              width: '48%',
-              borderRadius: 4,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: typography.primaryText.bold,
-                color: colors.lightTitle,
-                fontSize: fontSizes.medium,
-                textAlign: 'center',
-              }}
-            >
-              Cadastrar
-            </Text>
-          </TouchableOpacity>
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -123,5 +70,3 @@ const OnboardingScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
 };
 
 export default OnboardingScreen;
-
-const styles = StyleSheet.create({});
