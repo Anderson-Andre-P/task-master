@@ -1,6 +1,5 @@
 import { TextInput, Text, View } from 'react-native';
 import { StyleSheet } from 'react-native';
-import { colors, fontSizes, typography } from '../../theme';
 import AppCustomModal from '../CustomModal/AppCustomModal';
 import React, { useState } from 'react';
 
@@ -15,16 +14,19 @@ interface TodoInputProps {
   addTask: (task: []) => void;
 }
 
-const AddTaskModal = ({ open, handleCancel, handleAddTask, addTask }) => {
-  const [task, setTask] = useState('');
-  const [date, setDate] = useState(new Date());
+const AddTaskModal = ({ open, handleCancel, addTask }) => {
+  const [taskTitle, setTaskTitle] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
+  const [taskDate, setTaskDate] = useState(new Date());
 
   function handleAddNewTask() {
-    if (!task) return;
+    if (!taskTitle) return;
+    if (!taskDescription) return;
 
-    addTask(task);
+    addTask([taskTitle, taskDescription]);
 
-    setTask('');
+    setTaskTitle('');
+    setTaskDescription('');
 
     return;
   }
@@ -35,7 +37,7 @@ const AddTaskModal = ({ open, handleCancel, handleAddTask, addTask }) => {
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setShow(false);
-    setDate(currentDate);
+    setTaskDate(currentDate);
   };
 
   const showMode = (currentMode) => {
@@ -54,12 +56,23 @@ const AddTaskModal = ({ open, handleCancel, handleAddTask, addTask }) => {
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
-          placeholder="Adicionar nova tarefa"
+          placeholder="Título"
           placeholderTextColor="#B2B2B2"
           returnKeyType="send"
           selectionColor="#666666"
-          value={task}
-          onChangeText={setTask}
+          value={taskTitle}
+          onChangeText={setTaskTitle}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          placeholder="Descrição"
+          placeholderTextColor="#B2B2B2"
+          returnKeyType="send"
+          selectionColor="#666666"
+          value={taskDescription}
+          onChangeText={setTaskDescription}
         />
       </View>
 
@@ -70,7 +83,8 @@ const AddTaskModal = ({ open, handleCancel, handleAddTask, addTask }) => {
         />
         <TextBody
           text={
-            'Data selecionada: ' + new Intl.DateTimeFormat('pt-BR').format(date)
+            'Data selecionada: ' +
+            new Intl.DateTimeFormat('pt-BR').format(taskDate)
           }
           isDark={false}
         />
@@ -81,8 +95,8 @@ const AddTaskModal = ({ open, handleCancel, handleAddTask, addTask }) => {
             testID="dateTimePicker"
             mode="date"
             is24Hour={true}
-            value={date}
-            onChange={onChange}
+            value={taskDate}
+            onChange={() => setTaskDate}
           />
         )}
       </View>

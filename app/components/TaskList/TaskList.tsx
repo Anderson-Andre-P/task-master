@@ -9,10 +9,13 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 
 import { ItemWrapper } from '../ItemWrapper/ItemWrapper';
+import { StyleGuide } from '../../theme/StyleGuide';
+import { colors } from '../../theme';
 
 export interface Task {
   id: number;
   title: string;
+  description: string;
   done: boolean;
 }
 
@@ -49,14 +52,32 @@ export function TasksList({
                 >
                   {item.done && <Icon name="check" size={12} color="#FFF" />}
                 </View>
+                <View style={styles.taskContent}>
+                  <Text
+                    style={
+                      item.done
+                        ? [styles.taskTextTitleDone]
+                        : [styles.taskTextTitle]
+                    }
+                  >
+                    {item.title[0]}
+                  </Text>
 
-                <Text style={item.done ? styles.taskTextDone : styles.taskText}>
-                  {item.title}
-                </Text>
-
-                <Text style={styles.taskText}>
-                  {item.done ? 'Concluída' : 'Não Concluída'}
-                </Text>
+                  <Text
+                    style={item.done ? styles.taskTextDone : styles.taskText}
+                  >
+                    {item.title[1]}
+                  </Text>
+                  <Text
+                    style={
+                      item.done
+                        ? [styles.taskStatusDone]
+                        : [styles.taskStatusDontDone]
+                    }
+                  >
+                    {item.done ? 'Concluída' : 'Não Concluída'}
+                  </Text>
+                </View>
               </TouchableOpacity>
             </View>
 
@@ -99,7 +120,6 @@ const styles = StyleSheet.create({
   },
   taskText: {
     color: '#666',
-    fontFamily: 'Inter-Medium',
   },
   taskMarkerDone: {
     height: 16,
@@ -113,6 +133,33 @@ const styles = StyleSheet.create({
   taskTextDone: {
     color: '#1DB863',
     textDecorationLine: 'line-through',
-    fontFamily: 'Inter-Medium',
+  },
+  taskStatusDone: {
+    color: '#1DB863',
+  },
+  taskStatusDontDone: {
+    color: colors.errorBackground,
+  },
+  taskTextTitleDone: {
+    textDecorationLine: 'line-through',
+    fontSize: StyleGuide.typography.title3.fontSize,
+    lineHeight: StyleGuide.typography.title3.lineHeight,
+    fontWeight: '600',
+    letterSpacing: 0.25,
+    color: colors.primary,
+    marginBottom: StyleGuide.spacing,
+  },
+  taskTextTitle: {
+    fontSize: StyleGuide.typography.title3.fontSize,
+    lineHeight: StyleGuide.typography.title3.lineHeight,
+    fontWeight: '600',
+    letterSpacing: 0.25,
+    color: colors.primary,
+    marginBottom: StyleGuide.spacing,
+  },
+  taskContent: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: 200,
   },
 });

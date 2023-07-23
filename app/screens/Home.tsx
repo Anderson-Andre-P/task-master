@@ -14,21 +14,19 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 export interface Task {
   id: number;
   title: string;
+  description: string;
   done: boolean;
-  date: Date; // Adicione este campo para representar a data da tarefa
 }
 
-function Home({ navigation: { navigate } }) {
+export default function Home({ navigation: { navigate } }) {
   const [tasks, setTasks] = useState<Task[]>([]);
 
-  const [dates, setDates] = useState<Date[]>([]);
-
-  function handleAddTask(newTaskTitle: string, newTaskDate: Date) {
+  function handleAddTask(newTaskTitle: string, newTaskDescription: string) {
     const newTask = {
       id: new Date().getTime(),
       title: newTaskTitle,
+      description: newTaskDescription,
       done: false,
-      date: newTaskDate, // Adicione a data à estrutura da tarefa
     };
 
     setTasks((oldTasks) => [...oldTasks, newTask]);
@@ -64,13 +62,6 @@ function Home({ navigation: { navigate } }) {
     <View style={styles.container}>
       <Header tasksCounter={tasks.length} />
 
-      {/* <PrimaryButton
-        onPress={() => {
-          setAddModalVisible(true);
-        }}
-        text={'Adicionar nova tarefa'}
-      /> */}
-
       <FabButton
         onPress={() => {
           setAddModalVisible(true);
@@ -81,8 +72,7 @@ function Home({ navigation: { navigate } }) {
       <AddTaskModal
         open={addModalVisible}
         handleCancel={handleCancelAdd}
-        handleAddTask={(task, date) => handleAddTask(task, date)}
-        addTask={(task, date) => handleAddTask(task, date)}
+        addTask={handleAddTask}
       />
 
       <TasksList
@@ -100,5 +90,3 @@ const styles = StyleSheet.create({
     backgroundColor: colors.lightBackground,
   },
 });
-
-export default Home;

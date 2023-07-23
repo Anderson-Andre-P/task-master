@@ -24,9 +24,9 @@ export function Header({ tasksCounter }: HeaderProps) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 40,
+    paddingTop: 80,
     paddingHorizontal: 24,
-    paddingBottom: 60,
+    paddingBottom: 40,
     backgroundColor: colors.primary,
     justifyContent: 'space-between',
     alignItems: 'center',
