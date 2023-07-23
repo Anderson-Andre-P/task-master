@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { Header } from '../components/Header/Header';
 import { Task, TasksList } from '../components/TaskList/TaskList';
-import { TodoInput } from '../components/TodoInput/TodoInput';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../types';
+import AddTaskModal from '../components/addTaskModal/AddTaskModal';
+import AppCustomModal from '../components/CustomModal/AppCustomModal';
+import { Button } from 'react-native';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 
@@ -20,6 +22,8 @@ function Home({ navigation: { navigate } }) {
     };
 
     setTasks((oldTasks) => [...oldTasks, newTask]);
+
+    setAddModalVisible(false);
   }
 
   function handleToggleTaskDone(id: number) {
@@ -40,11 +44,31 @@ function Home({ navigation: { navigate } }) {
     setTasks(updatedTask);
   }
 
+  const [addModalVisible, setAddModalVisible] = useState(false);
+
+  const handleCancelAdd = () => {
+    setAddModalVisible(false);
+  };
+
   return (
     <View style={styles.container}>
       <Header tasksCounter={tasks.length} />
 
-      <TodoInput addTask={handleAddTask} />
+      <TouchableOpacity
+        onPress={() => {
+          setAddModalVisible(true);
+        }}
+      >
+        <Text>
+          Adicionar nova tarefa
+          <AddTaskModal
+            open={addModalVisible}
+            handleCancel={handleCancelAdd}
+            handleAddTask={handleAddTask}
+            addTask={handleAddTask}
+          />
+        </Text>
+      </TouchableOpacity>
 
       <TasksList
         tasks={tasks}
