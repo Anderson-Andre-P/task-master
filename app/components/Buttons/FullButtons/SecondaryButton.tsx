@@ -2,14 +2,18 @@ import { Pressable, StyleSheet } from 'react-native';
 import React from 'react';
 import { colors } from '../../../theme';
 import { SecondaryTextButton } from '../../Texts/SecondaryTextButton';
+import { StyleGuide } from '../../../theme/StyleGuide';
 
-export function SeccondaryButton({
+export function SecondaryButton({
   text,
-
+  secondaryButtonCustomStyle,
   ...otherProps
 }) {
   return (
-    <Pressable style={[styles.button]} {...otherProps}>
+    <Pressable
+      style={[styles.button, secondaryButtonCustomStyle]}
+      {...otherProps}
+    >
       {<SecondaryTextButton text={text} />}
     </Pressable>
   );
@@ -26,7 +30,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.primary,
     backgroundColor: 'transparent',
-    width: '100%',
     color: colors.primary,
+    marginBottom: StyleGuide.spacing,
   },
 });

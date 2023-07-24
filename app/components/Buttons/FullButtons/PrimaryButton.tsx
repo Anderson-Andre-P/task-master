@@ -1,12 +1,19 @@
-import { Pressable, StyleSheet } from "react-native";
-import React from "react";
-import { colors } from "../../../theme";
-import { StyleGuide } from "../../../theme/StyleGuide";
-import { PrimaryTextButton } from "../../Texts/PrimaryTextButton";
+import { Pressable, StyleSheet } from 'react-native';
+import React from 'react';
+import { colors } from '../../../theme';
+import { StyleGuide } from '../../../theme/StyleGuide';
+import { PrimaryTextButton } from '../../Texts/PrimaryTextButton';
 
-export function PrimaryButton({ text, ...otherProps }) {
+export function PrimaryButton({
+  text,
+  primaryButtonCustomStyle,
+  ...otherProps
+}) {
   return (
-    <Pressable style={[styles.button, styles.button]} {...otherProps}>
+    <Pressable
+      style={[styles.button, styles.button, primaryButtonCustomStyle]}
+      {...otherProps}
+    >
       {<PrimaryTextButton text={text} />}
     </Pressable>
   );
@@ -14,8 +21,8 @@ export function PrimaryButton({ text, ...otherProps }) {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     paddingVertical: 12,
     paddingHorizontal: 12,
     borderRadius: 4,
@@ -23,7 +30,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderWidth: 2,
     borderColor: colors.primary,
-    width: "100%",
     marginBottom: StyleGuide.spacing,
   },
 });

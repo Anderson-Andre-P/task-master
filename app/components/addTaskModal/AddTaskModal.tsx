@@ -1,22 +1,21 @@
-import { TextInput, View } from "react-native";
-import { StyleSheet } from "react-native";
-import React, { useState } from "react";
+import { TextInput, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import React, { useState } from 'react';
 
-import DateTimePicker from "@react-native-community/datetimepicker";
-import { PrimaryButton } from "../Buttons/FullButtons/PrimaryButton";
-import { PrimaryMiddleButton } from "../Buttons/MiddleButtons/PrimaryMiddleButton";
-import { SeccondaryMiddleButton } from "../Buttons/MiddleButtons/SecondaryMiddleButton";
-import { TextTitle } from "../Texts/TextTitle";
-import { TextBody } from "../Texts/TextBody";
-import { AppCustomModal } from "../CustomModal/AppCustomModal";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import { PrimaryButton } from '../Buttons/FullButtons/PrimaryButton';
+import { TextTitle } from '../Texts/TextTitle';
+import { TextBody } from '../Texts/TextBody';
+import { AppCustomModal } from '../CustomModal/AppCustomModal';
+import { SecondaryButton } from '../Buttons/FullButtons/SecondaryButton';
 
 interface TodoInputProps {
   addTask: (task: []) => void;
 }
 
 const AddTaskModal = ({ open, handleCancel, addTask }) => {
-  const [taskTitle, setTaskTitle] = useState("");
-  const [taskDescription, setTaskDescription] = useState("");
+  const [taskTitle, setTaskTitle] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
   const [taskDate, setTaskDate] = useState(new Date());
 
   function handleAddNewTask() {
@@ -25,13 +24,13 @@ const AddTaskModal = ({ open, handleCancel, addTask }) => {
 
     addTask([taskTitle, taskDescription]);
 
-    setTaskTitle("");
-    setTaskDescription("");
+    setTaskTitle('');
+    setTaskDescription('');
 
     return;
   }
 
-  const [mode, setMode] = useState("date");
+  const [mode, setMode] = useState('date');
   const [show, setShow] = useState(false);
 
   const onChange = (event, selectedDate) => {
@@ -46,12 +45,12 @@ const AddTaskModal = ({ open, handleCancel, addTask }) => {
   };
 
   const showDatepicker = () => {
-    showMode("date");
+    showMode('date');
   };
 
   return (
     <AppCustomModal open={open}>
-      <TextTitle text={"Adicionar tarefa"} />
+      <TextTitle text={'Adicionar tarefa'} />
 
       <View style={styles.inputContainer}>
         <TextInput
@@ -79,12 +78,13 @@ const AddTaskModal = ({ open, handleCancel, addTask }) => {
       <View style={styles.modalDateGroup}>
         <PrimaryButton
           onPress={showDatepicker}
-          text={"Escolher a data da tarefa"}
+          text={'Escolher a data da tarefa'}
+          primaryButtonCustomStyle={styles.primaryButtonStyle}
         />
         <TextBody
           text={
-            "Data selecionada: " +
-            new Intl.DateTimeFormat("pt-BR").format(taskDate)
+            'Data selecionada: ' +
+            new Intl.DateTimeFormat('pt-BR').format(taskDate)
           }
           isDark={false}
         />
@@ -102,8 +102,16 @@ const AddTaskModal = ({ open, handleCancel, addTask }) => {
       </View>
 
       <View style={styles.modalFormActions}>
-        <PrimaryMiddleButton onPress={handleAddNewTask} text={"Adicionar"} />
-        <SeccondaryMiddleButton onPress={handleCancel} text={"Cancelar"} />
+        <PrimaryButton
+          onPress={handleAddNewTask}
+          text={'Adicionar'}
+          primaryButtonCustomStyle={styles.primaryButtonStyle_2}
+        />
+        <SecondaryButton
+          onPress={handleCancel}
+          text={'Cancelar'}
+          secondaryButtonCustomStyle={styles.primaryButtonStyle_2}
+        />
       </View>
     </AppCustomModal>
   );
@@ -111,31 +119,41 @@ const AddTaskModal = ({ open, handleCancel, addTask }) => {
 
 export const styles = StyleSheet.create({
   modalFormActions: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     zIndex: -1,
   },
   inputContainer: {
-    backgroundColor: "#FFF",
+    backgroundColor: '#FFF',
     borderRadius: 4,
-    flexDirection: "row",
-    alignItems: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
     marginBottom: 12,
   },
   input: {
     flex: 1,
     height: 56,
     paddingHorizontal: 20,
-    backgroundColor: "#FFF",
+    backgroundColor: '#FFF',
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
     borderRightWidth: 1,
-    borderRightColor: "#EBEBEB",
-    color: "#666666",
+    borderRightColor: '#EBEBEB',
+    color: '#666666',
   },
   modalDateGroup: {
     marginBottom: 12,
+  },
+
+  primaryButtonStyle: {
+    width: '100%',
+  },
+  primaryButtonStyle_2: {
+    width: '48%',
+  },
+  secondaryButtonStyle: {
+    width: '48%',
   },
 });
 
