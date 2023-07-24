@@ -157,7 +157,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation: { navigate } }) => {
                 <PrimaryButton text={'Cadastrar'} onPress={handleSubmit} />
                 <SeccondaryButton
                   text={'Já possuo uma conta'}
-                  onPress={() => navigate('Home')}
+                  onPress={() => navigate('Login')}
                 />
               </View>
             )}
