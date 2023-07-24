@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   FlatList,
   TouchableOpacity,
@@ -11,6 +11,8 @@ import Icon from 'react-native-vector-icons/Feather';
 import { ItemWrapper } from '../ItemWrapper/ItemWrapper';
 import { StyleGuide } from '../../theme/StyleGuide';
 import { colors } from '../../theme';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface Task {
   id: number;
@@ -30,6 +32,22 @@ export function TasksList({
   toggleTaskDone,
   removeTask,
 }: TasksListProps) {
+  const userStorageKey = `@todo:desafio:${tasks[0]}`;
+
+  async function storageData() {
+    await AsyncStorage.setItem(userStorageKey, JSON.stringify(tasks));
+  }
+
+  async function loadData() {
+    const dataKey = `@todo:desafio:${tasks[0]}`;
+    const response = await AsyncStorage.getItem(dataKey);
+    const responseFormatted = response ? JSON.parse(response) : [];
+  }
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
   return (
     <FlatList
       data={tasks}
@@ -125,17 +143,17 @@ const styles = StyleSheet.create({
     height: 16,
     width: 16,
     borderRadius: 4,
-    backgroundColor: '#1DB863',
+    backgroundColor: 'green',
     marginRight: 15,
     alignItems: 'center',
     justifyContent: 'center',
   },
   taskTextDone: {
-    color: '#1DB863',
+    color: 'green',
     textDecorationLine: 'line-through',
   },
   taskStatusDone: {
-    color: '#1DB863',
+    color: 'green',
   },
   taskStatusDontDone: {
     color: colors.errorBackground,
