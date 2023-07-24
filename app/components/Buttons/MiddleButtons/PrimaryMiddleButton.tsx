@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
-import React from 'react';
-import { colors } from '../../../theme';
-import { PrimaryTextButton } from '../../Texts/PrimaryTextButton';
+import { Pressable, StyleSheet } from "react-native";
+import React from "react";
+import { colors } from "../../../theme";
+import { PrimaryTextButton } from "../../Texts/PrimaryTextButton";
 
 export function PrimaryMiddleButton({ text, ...otherProps }) {
   return (
@@ -13,8 +13,8 @@ export function PrimaryMiddleButton({ text, ...otherProps }) {
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 12,
     borderRadius: 4,
@@ -22,6 +22,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary,
     borderWidth: 2,
     borderColor: colors.primary,
-    width: '49%',
+    width: "49%",
   },
 });

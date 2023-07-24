@@ -1,14 +1,14 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { colors } from '../../theme';
-import { TextBody } from '../Texts/TextBody';
+import React from "react";
+import { StyleSheet, View } from "react-native";
+import { colors } from "../../theme";
+import { TextBody } from "../Texts/TextBody";
 
 interface HeaderProps {
   tasksCounter: number;
 }
 
 export function Header({ tasksCounter }: HeaderProps) {
-  const tasksCounterText = tasksCounter === 1 ? 'tarefa' : 'tarefas';
+  const tasksCounterText = tasksCounter === 1 ? "tarefa" : "tarefas";
 
   return (
     <View style={styles.container}>
@@ -28,12 +28,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingBottom: 40,
     backgroundColor: colors.primary,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
+    justifyContent: "space-between",
+    alignItems: "center",
+    flexDirection: "row",
   },
   tasks: {
-    alignItems: 'center',
-    flexDirection: 'row',
+    alignItems: "center",
+    flexDirection: "row",
   },
 });

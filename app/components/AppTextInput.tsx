@@ -1,8 +1,8 @@
-import { StyleSheet, TextInput, TextInputProps } from 'react-native';
-import React, { useState } from 'react';
-import { colors, fontSizes, spacing, typography } from '../theme';
+import { StyleSheet, TextInput } from "react-native";
+import React, { useState } from "react";
+import { colors, fontSizes, spacing, typography } from "../theme";
 
-const AppTextInput: React.FC<TextInputProps> = ({ ...otherProps }) => {
+export function AppTextInput({ ...otherProps }) {
   const [focused, setFocused] = useState<boolean>(false);
   return (
     <TextInput
@@ -30,8 +30,6 @@ const AppTextInput: React.FC<TextInputProps> = ({ ...otherProps }) => {
       {...otherProps}
     />
   );
-};
-
-export default AppTextInput;
+}
 
 const styles = StyleSheet.create({});

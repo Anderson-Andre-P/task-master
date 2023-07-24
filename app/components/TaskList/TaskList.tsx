@@ -1,18 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
 import {
   FlatList,
   TouchableOpacity,
   View,
   Text,
   StyleSheet,
-} from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
+} from "react-native";
+import Icon from "react-native-vector-icons/Feather";
 
-import { ItemWrapper } from '../ItemWrapper/ItemWrapper';
-import { StyleGuide } from '../../theme/StyleGuide';
-import { colors } from '../../theme';
+import { ItemWrapper } from "../ItemWrapper/ItemWrapper";
+import { StyleGuide } from "../../theme/StyleGuide";
+import { colors } from "../../theme";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export interface Task {
   id: number;
@@ -93,7 +93,7 @@ export function TasksList({
                         : [styles.taskStatusDontDone]
                     }
                   >
-                    {item.done ? 'Concluída' : 'Não Concluída'}
+                    {item.done ? "Concluída" : "Não Concluída"}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -123,46 +123,46 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     marginBottom: 4,
     borderRadius: 4,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   taskMarker: {
     height: 16,
     width: 16,
     borderRadius: 4,
     borderWidth: 1,
-    borderColor: '#B2B2B2',
+    borderColor: "#B2B2B2",
     marginRight: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   taskText: {
-    color: '#666',
+    color: "#666",
   },
   taskMarkerDone: {
     height: 16,
     width: 16,
     borderRadius: 4,
-    backgroundColor: 'green',
+    backgroundColor: "green",
     marginRight: 15,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   taskTextDone: {
-    color: 'green',
-    textDecorationLine: 'line-through',
+    color: "green",
+    textDecorationLine: "line-through",
   },
   taskStatusDone: {
-    color: 'green',
+    color: "green",
   },
   taskStatusDontDone: {
     color: colors.errorBackground,
   },
   taskTextTitleDone: {
-    textDecorationLine: 'line-through',
+    textDecorationLine: "line-through",
     fontSize: StyleGuide.typography.title3.fontSize,
     lineHeight: StyleGuide.typography.title3.lineHeight,
-    fontWeight: '600',
+    fontWeight: "600",
     letterSpacing: 0.25,
     color: colors.primary,
     marginBottom: StyleGuide.spacing,
@@ -170,14 +170,14 @@ const styles = StyleSheet.create({
   taskTextTitle: {
     fontSize: StyleGuide.typography.title3.fontSize,
     lineHeight: StyleGuide.typography.title3.lineHeight,
-    fontWeight: '600',
+    fontWeight: "600",
     letterSpacing: 0.25,
     color: colors.primary,
     marginBottom: StyleGuide.spacing,
   },
   taskContent: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     maxWidth: 200,
   },
 });

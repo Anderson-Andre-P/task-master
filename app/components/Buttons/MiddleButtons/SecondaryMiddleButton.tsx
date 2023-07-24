@@ -1,7 +1,7 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
-import React from 'react';
-import { colors } from '../../../theme';
-import { SecondaryTextButton } from '../../Texts/SecondaryTextButton';
+import { Pressable, StyleSheet } from "react-native";
+import React from "react";
+import { colors } from "../../../theme";
+import { SecondaryTextButton } from "../../Texts/SecondaryTextButton";
 
 export function SeccondaryMiddleButton({
   text,
@@ -17,16 +17,16 @@ export function SeccondaryMiddleButton({
 
 const styles = StyleSheet.create({
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 12,
     borderRadius: 4,
     elevation: 0,
     borderWidth: 2,
     borderColor: colors.primary,
-    backgroundColor: 'transparent',
-    width: '49%',
+    backgroundColor: "transparent",
+    width: "49%",
     color: colors.primary,
   },
 });

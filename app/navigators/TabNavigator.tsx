@@ -1,10 +1,9 @@
-import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { getFocusedRouteNameFromRoute } from '@react-navigation/native';
+import React from "react";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Home from '../screens/Home';
+import Home from "../screens/Home";
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -27,9 +26,9 @@ const TabNavigator = () => {
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
-        tabBarStyle: { backgroundColor: '#AD40AF' },
-        tabBarInactiveTintColor: '#fff',
-        tabBarActiveTintColor: 'yellow',
+        tabBarStyle: { backgroundColor: "#AD40AF" },
+        tabBarInactiveTintColor: "#fff",
+        tabBarActiveTintColor: "yellow",
       }}
     >
       {/* <Tab.Screen
@@ -51,13 +50,13 @@ const TabNavigator = () => {
 
 const getTabBarVisibility = (route) => {
   // console.log(route);
-  const routeName = getFocusedRouteNameFromRoute(route) ?? 'Feed';
+  const routeName = getFocusedRouteNameFromRoute(route) ?? "Feed";
   // console.log(routeName);
 
-  if (routeName == 'GameDetails') {
-    return 'none';
+  if (routeName == "GameDetails") {
+    return "none";
   }
-  return 'flex';
+  return "flex";
 };
 
 export default TabNavigator;
