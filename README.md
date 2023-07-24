@@ -36,7 +36,7 @@ Cor do badge: 5965e0
 
 ![Demo](/Thumbnail.png)
 
-[Modelos de Banner](https://www.figma.com/file/EeOHw35yMsqnaIHSFo6G32/Banners?type=design&node-id=0%3A1&mode=design&t=6e58FKnRMeQUjtJj-1)
+[Figma](https://www.figma.com/file/7hPexVMKx5ZPevRnVcKVlh/Task-Master?type=design&node-id=19%3A3&mode=design&t=7POHmtOTrUIoyqvA-1)
 
 ## :dart: About
 
@@ -172,7 +172,7 @@ $ yarn OR npm install
 $ expo start
 ```
 
-You can see how the application looks in its web version <a href="https://genuine-pika-26f547.netlify.app/">clicking here</a>
+<!-- You can see how the application looks in its web version <a href="https://genuine-pika-26f547.netlify.app/">clicking here</a> -->
 
 ## Contact
 
