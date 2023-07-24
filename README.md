@@ -2,25 +2,25 @@
 Titulo: Modelo de README
 Nome do repositório: task-master
 Data do upload: 15.07.23
-Cor do badge: 5965e0
+Cor do badge: 2563EB
 -->
 
 <h1 align="center">Task Master</h1>
 
 <p align="center">
   <a href="https://github.com/Anderson-Andre-P/task-master">
-    <img alt="Made by Anderson André" src="https://img.shields.io/badge/-Github-5965e0?style=for-the-badge&logo=Github&logoColor=white&link=https://github.com/Anderson-Andre-P" />
+    <img alt="Made by Anderson André" src="https://img.shields.io/badge/-Github-2563EB?style=for-the-badge&logo=Github&logoColor=white&link=https://github.com/Anderson-Andre-P" />
   </a>
   <a href="https://www.linkedin.com/in/anderson-andre-pereira/">
-      <img alt="Anderson André" src="https://img.shields.io/badge/-Anderson%20André-5965e0?style=for-the-badge&logo=Linkedin&logoColor=white" />
+      <img alt="Anderson André" src="https://img.shields.io/badge/-Anderson%20André-2563EB?style=for-the-badge&logo=Linkedin&logoColor=white" />
    </a>
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Anderson-Andre-P/task-master?style=for-the-badge&label=Repo%20Size:&labelColor=5965e0&color=5965e0">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/Anderson-Andre-P/task-master?style=for-the-badge&label=Repo%20Size:&labelColor=2563EB&color=2563EB">
   </p>
 
   <p align="center">
-    <img src="https://img.shields.io/badge/task_master-15.07.23-5965e0?style=for-the-badge&labelColor=5965e0">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Anderson-Andre-P/task-master?style=for-the-badge&label=last%20commit:&labelColor=5965e0&color=5965e0">
-    <img alt="License" src="https://img.shields.io/badge/license-MIT-5965e0?style=for-the-badge&labelColor=5965e0&color=5965e0">
+    <img src="https://img.shields.io/badge/task_master-15.07.23-2563EB?style=for-the-badge&labelColor=2563EB">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Anderson-Andre-P/task-master?style=for-the-badge&label=last%20commit:&labelColor=2563EB&color=2563EB">
+    <img alt="License" src="https://img.shields.io/badge/license-MIT-2563EB?style=for-the-badge&labelColor=2563EB&color=2563EB">
 </p>
 
 <p align="center">
@@ -49,8 +49,6 @@ Welcome to the Task Master App, a project developed with the objective of creati
 - **Onboarding Experience:** Our user-friendly onboarding guides you through the app's features, making it easy to get started.
 
 - **Task Management:** You can add tasks with titles, descriptions, and due dates, allowing you to prioritize and manage your responsibilities effectively.
-
-- **Task Reminders:** Stay on track with task reminders, ensuring you never miss an important deadline.
 
 - **Task Categories:** Organize your tasks into different categories for better organization and clarity.
 
